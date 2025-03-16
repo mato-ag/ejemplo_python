@@ -28,16 +28,11 @@ answers = [
 # mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 combined_list = list(zip(questions, answers, correct_answers_index))
-# El usuario deberá contestar 3 preguntas
-for _ in range(3):
-    # Se selecciona una pregunta aleatoria
-    question_to_ask = random.choice(combined_list)
-    question, options, correct_answer_index = question_to_ask
-    # Se muestra la pregunta y las respuestas posibles
-    print(question[0])
-    for i, option in enumerate(options):
+selected_questions = random.sample(combined_list, 3)
+for question, answer, correct_answer_index in selected_questions:
+    print ({question[0]})
+    for i, option in enumerate(answer):
         print(f"{i + 1}. {option}")
-    # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
         try:
             user_answer = int(input("Respuesta: "))
@@ -57,10 +52,10 @@ for _ in range(3):
             print("Respuesta invalida")
             sys.exit(1)
     else:
-         # Si el usuario no responde correctamente después de 2 intentos
-         # se muestra la respuesta correcta
-         print("Incorrecto. La respuesta correcta es: ")
-         print({options[correct_answer_index]})
-         # Se imprime un blanco al final de la pregunta
-         print()
+        # Si el usuario no responde correctamente después de 2 intentos
+        # se muestra la respuesta correcta
+        print("Incorrecto. La respuesta correcta es: ")
+        print({answer[correct_answer_index]})
+        # Se imprime un blanco al final de la pregunta
+        print()
 print (f'El score del jugador es:  +{score}')
