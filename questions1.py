@@ -10,29 +10,33 @@ questions = [
     ("¿Cuál de las siguientes expresiones es un comentario válido en Python?",),
     ("¿Cuál es el operador de comparación para verificar si os valores son iguales?",),
 ]
-# Respuestas posibles para cada pregunta, en el mismo orden
-# que las preguntas
+
+# Respuestas posibles para cada pregunta
 answers = [
     ("size()", "len()", "length()", "count()"),
     ("3.14", "'42'", "10", "True"),
     ("input()", "scan()", "read()", "ask()"),
     (
-    "// Esto es un comentario",
-    "/* Esto es un comentario */",
-    "-- Esto es un comentario",
-    "# Esto es un comentario",
+        "// Esto es un comentario",
+        "/* Esto es un comentario */",
+        "-- Esto es un comentario",
+        "# Esto es un comentario",
     ),
     ("=", "==", "!=", "==="),
 ]
-# Índice de la respuesta correcta para cada pregunta, el el
-# mismo orden que las preguntas
+
+# Índice de la respuesta correcta para cada pregunta
 correct_answers_index = [1, 2, 0, 3, 1]
+
 combined_list = list(zip(questions, answers, correct_answers_index))
 selected_questions = random.sample(combined_list, 3)
+
 for question, answer, correct_answer_index in selected_questions:
-    print ({question[0]})
+    print(question[0])
+
     for i, option in enumerate(answer):
         print(f"{i + 1}. {option}")
+
     for intento in range(2):
         try:
             user_answer = int(input("Respuesta: "))
@@ -41,21 +45,21 @@ for question, answer, correct_answer_index in selected_questions:
                 user_answer = user_answer - 1
                 if user_answer == correct_answer_index:
                     print("¡Correcto!")
-                    score = score + 1
+                    score += 1
                     break
                 else:
-                    score = score - 0.5
+                    score -= 0.5
             else:
-                print ("Respuesta invalida")
+                print("Respuesta invalida")
                 sys.exit(1)
         except ValueError:
             print("Respuesta invalida")
             sys.exit(1)
     else:
-        # Si el usuario no responde correctamente después de 2 intentos
-        # se muestra la respuesta correcta
+        # Despues de 2 intentos se muestra la respuesta correcta
         print("Incorrecto. La respuesta correcta es: ")
-        print({answer[correct_answer_index]})
-        # Se imprime un blanco al final de la pregunta
-        print()
-print (f'El score del jugador es:  +{score}')
+        print(answer[correct_answer_index])
+    # Se imprime un blanco al final de la pregunta
+    print()
+
+print(f'El score del jugador es: {score}')
